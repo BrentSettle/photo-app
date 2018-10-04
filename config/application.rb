@@ -2,9 +2,15 @@ require_relative 'boot'
 
 require 'rails/all'
 
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+unless Rails.env.production?
+  Dotenv::Railtie.load
+end
 
 module PhotoApp
   class Application < Rails::Application
